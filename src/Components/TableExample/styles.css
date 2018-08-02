@@ -17,6 +17,9 @@
 /* Table default theme */
 
 .ReactVirtualized__Table {
+  border: solid 1px;
+  padding: 0px;
+
 }
 
 .ReactVirtualized__Table__Grid {
@@ -28,6 +31,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-color: rgba(11, 117, 117, 0.568);
+  padding: 5px;
+  border: solid 1px;
 }
 .ReactVirtualized__Table__row {
   display: flex;

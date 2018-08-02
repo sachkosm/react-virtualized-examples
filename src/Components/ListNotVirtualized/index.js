@@ -4,15 +4,15 @@ import './style.css';
 import loremIpsum from 'lorem-ipsum';
 
 
-const rowCount = 100000;
+
 class ListNotVirtualized extends Component {
   constructor() {
     super();
-    this.list = Array(rowCount).fill().map((val, idx) => {
+    this.rowCount = 200000;
+    this.list = Array(this.rowCount).fill().map((val, idx) => {
       return {
         id: idx,
         name: 'John Doe',
-        image: 'http://via.placeholder.com/40',
         text: loremIpsum({
           count: 1,
           units: 'sentences',
@@ -25,8 +25,8 @@ class ListNotVirtualized extends Component {
   renderRow(item) {
     return (
       <div key={item.id} className="row">
-        <div className="image">
-          <img src={item.image} alt="" />
+        <div className="content">
+          <div>{item.id}</div>
         </div>
         <div className="content">
           <div>{item.name}</div>
@@ -40,7 +40,7 @@ class ListNotVirtualized extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Static List of {this.rowCount} records</h1>
         </header>
         <div className="list">
           {this.list.map(this.renderRow)}

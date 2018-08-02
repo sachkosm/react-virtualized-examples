@@ -43,7 +43,7 @@ class App extends Component {
     return (
       <div>
         <ul>
-          <li><button id='1' onClick={this.returnSelected} >List Example Not Virtualized 100k</button></li>
+          <li><button id='1' onClick={this.returnSelected} >List Example Not Virtualized 200k</button></li>
           <li><button id='2' onClick={this.returnSelected} >List Example 2M</button></li>
           <li><button id='3' onClick={this.returnSelected} >Grid Example 2M</button></li>
         </ul>

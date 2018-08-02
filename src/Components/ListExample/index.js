@@ -5,13 +5,14 @@ import loremIpsum from 'lorem-ipsum';
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache, ScrollSync } from "react-virtualized";
 
 
-const rowCount = 2000000;
+
 class ListExample extends Component {
   constructor() {
     super();
+    this.rowCount = 2000000;
     this.renderRow = this.renderRow.bind(this);
 
-    this.list = Array(rowCount).fill().map((val, idx) => {
+    this.list = Array(this.rowCount).fill().map((val, idx) => {
       return {
         id: idx,
         tradePrice1: Math.floor(Math.random() * 600) + 1,
@@ -67,7 +68,7 @@ class ListExample extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">List Example of {this.rowCount} records</h1>
         </header>
         <header className="App-table-header">
         <div  className="row">

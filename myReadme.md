@@ -1,4 +1,4 @@
-1. Working demo of 2000000 records using react-virtulized -> List
+1. Working demo of 2000000 records using react-virtulized -> List or Grid
 
 App-not-virtulized.js - demo not using virtulized.
 It fails to show 2000000 rrecords

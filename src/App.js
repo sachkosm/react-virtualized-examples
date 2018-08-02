@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GridExample from './Components/GridExample/';
 import ListExample from './Components/ListExample/';
 import ListNotVirtualized from './Components/ListNotVirtualized/';
+import TableExample from './Components/TableExample/';
 import './App.css';
 
 class App extends Component {
@@ -32,6 +33,9 @@ class App extends Component {
       case '3':
         return (<GridExample />)
         break;
+      case '4':
+        return (<TableExample />)
+        break;
       default:
         return (<div>
           Please select a component
@@ -46,6 +50,7 @@ class App extends Component {
           <li><button id='1' onClick={this.returnSelected} >List Example Not Virtualized 200k</button></li>
           <li><button id='2' onClick={this.returnSelected} >List Example 2M</button></li>
           <li><button id='3' onClick={this.returnSelected} >Grid Example 2M</button></li>
+          <li><button id='4' onClick={this.returnSelected} >Table Example 2M</button></li>
         </ul>
         <div>{this.returnComponent()}</div>
       </div>

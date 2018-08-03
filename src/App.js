@@ -3,6 +3,7 @@ import GridExample from './Components/GridExample/';
 import ListExample from './Components/ListExample/';
 import ListNotVirtualized from './Components/ListNotVirtualized/';
 import TableExample from './Components/TableExample/';
+import ReactPivotExample from './Components/ReactPivotExample/';
 import './App.css';
 
 class App extends Component {
@@ -36,6 +37,9 @@ class App extends Component {
       case '4':
         return (<TableExample />)
         break;
+      case '5':
+        return (<ReactPivotExample />)
+        break;
       default:
         return (<div>
           Please select a component
@@ -51,7 +55,8 @@ class App extends Component {
           <li><button id='2' onClick={this.returnSelected} >List Example 2M</button></li>
           <li><button id='3' onClick={this.returnSelected} >Grid Example 2M</button></li>
           <li><button id='4' onClick={this.returnSelected} >Table Example 2M</button></li>
-        </ul>
+          <li><button id='5' onClick={this.returnSelected} >React Pivot Not Virtulized 1M with Paging</button></li>
+        </ul> 
         <div>{this.returnComponent()}</div>
       </div>
     )

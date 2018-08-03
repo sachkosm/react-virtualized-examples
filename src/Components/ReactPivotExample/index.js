@@ -1,60 +1,31 @@
 import React, { Component } from 'react';
 import ReactPivot from '../../Components/ReactPivotR16Src';
-import rows from './data.json'
-import loremIpsum from 'lorem-ipsum';
+// import rows from './data.json'
+// import loremIpsum from 'lorem-ipsum';
+import data from './test-data.js'
 
 class ReactPivotExample extends Component {
 
     constructor(props, context) {
         super(props)
 
-
-        this.rowCount = 500000;
-
-        this.list = Array(this.rowCount).fill().map((val, idx) => {
-            return {
-                "firstName": Math.random()
-                    .toString(36)
-                    .substring(10),
-                "lastName": Math.random()
-                    .toString(36)
-                    .substring(10),
-                "state": Math.random()
-                    .toString(36)
-                    .substring(10),
-                "transaction": {
-                    "amount": Math.floor(Math.random() * 600) + 1,
-                    "date": "2012-02-02T08:00:00.000Z",
-                    "business": "Kozey-Moore",
-                    "name": Math.random()
-                        .toString(36)
-                        .substring(10),
-                    "type": Math.random()
-                        .toString(36)
-                        .substring(10),
-                    "account": "82741327"
-                }
-            }
-        })
-
-
-
-
         // These are your "groups"
         // "title" is the title of the column
         // all rows with the same "value" will be grouped
         this.dimensions = [
-            // "value" can be the key of what you want to group on
-            { title: 'Last Name', value: 'lastName' },
-            // "value" can also be function that returns what you want to group on
+            { value: 'firstName', title: 'First Name' },
+            { value: 'lastName', title: 'Last Name' },
+            { value: 'state', title: 'State' },
             {
-                title: 'Transaction Type',
-                value: function (row) { return row.transaction.type },
-                template: function (value) {
-                    return '<a href="http://google.com/?q=' + value + '">' + value + '</a>'
-                }
-            }
-        ]
+                value: function (row) {
+                    return row.transaction.business
+                }, title: 'Business'
+            },
+            {
+                value: function (row) {
+                    return row.transaction.type
+                }, title: 'Transaction Type'
+            }]
 
         // All rows will be run through the "reduce" function
         // Use this to build up a "memo" object with properties you're interested in
@@ -69,33 +40,44 @@ class ReactPivotExample extends Component {
         // Calculations are columns for the "memo" object built up above
         // "title" is the title of the column
         this.calculations = [
-            // "value" can be the key of the "memo" object from reduce
-            // "template" changes the display of the value, but not sorting behavior
             {
-                title: 'Amount', value: 'amountTotal',
-                template: function (val, row) { return '$' + val.toFixed(2) }
+                title: 'Count',
+                value: 'count',
+                className: 'alignRight'
+            },
+            {
+                title: 'Amount',
+                value: 'amountTotal',
+                template: function (val, row) {
+                    return '$' + val.toFixed(2)
+                },
+                className: 'alignRight'
             },
             {
                 title: 'Avg Amount',
-                // "value" can also be a function
-                value: function (memo) { return memo.amountTotal / memo.count },
-                template: function (val, row) { return '$' + val.toFixed(2) },
-                // you can also give a column a custom class (e.g. right align for numbers)
+                value: function (row) {
+                    return row.amountTotal / row.count
+                },
+                template: function (val, row) {
+                    return '$' + val.toFixed(2)
+                },
                 className: 'alignRight'
             }
         ]
     }
 
 
-
     render() {
+        var rows = data(500000)
         return (
             <div>
-                <ReactPivot rows={this.list}
+                <ReactPivot rows={rows}
+                    rows={rows}
                     dimensions={this.dimensions}
-                    reduce={this.reduce}
                     calculations={this.calculations}
-                    activeDimensions={['Transaction Type']} />
+                    reduce={this.reduce}
+                    activeDimensions={['Transaction Type']}
+                    nPaginateRows={100} />
             </div>
         )
     }

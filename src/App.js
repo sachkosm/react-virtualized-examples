@@ -55,7 +55,7 @@ class App extends Component {
           <li><button id='2' onClick={this.returnSelected} >List Example 2M</button></li>
           <li><button id='3' onClick={this.returnSelected} >Grid Example 2M</button></li>
           <li><button id='4' onClick={this.returnSelected} >Table Example 2M</button></li>
-          <li><button id='5' onClick={this.returnSelected} >React Pivot Not Virtulized 1M with Paging</button></li>
+          <li><button id='5' onClick={this.returnSelected} >React Pivot Not Virtulized 500k with Paging</button></li>
         </ul> 
         <div>{this.returnComponent()}</div>
       </div>

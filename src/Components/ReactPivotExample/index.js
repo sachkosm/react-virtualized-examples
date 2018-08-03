@@ -9,7 +9,7 @@ class ReactPivotExample extends Component {
         super(props)
 
 
-        this.rowCount = 1000000;
+        this.rowCount = 500000;
 
         this.list = Array(this.rowCount).fill().map((val, idx) => {
             return {

@@ -232,48 +232,50 @@ class ReactPivot extends React.Component {
   render() {
     var self = this
     return (
-      <div className='reactPivot'>
-        {this.props.hideDimensionFilter ? '' :
-          <Dimensions
-            dimensions={this.props.dimensions}
-            selectedDimensions={this.state.dimensions}
-            onChange={this.setDimensions} />
-        }
-        <ColumnControl
-          hiddenColumns={this.state.hiddenColumns}
-          onChange={this.setHiddenColumns} />
+      <div className='demo' >
+        <div className='reactPivot'>
+          {this.props.hideDimensionFilter ? '' :
+            <Dimensions
+              dimensions={this.props.dimensions}
+              selectedDimensions={this.state.dimensions}
+              onChange={this.setDimensions} />
+          }
+          <ColumnControl
+            hiddenColumns={this.state.hiddenColumns}
+            onChange={this.setHiddenColumns} />
 
-        <div className="reactPivot-csvExport">
-          <button onClick={partial(this.downloadCSV, this.state.rows)}>
-            Export CSV
+          <div className="reactPivot-csvExport">
+            <button onClick={partial(this.downloadCSV, this.state.rows)}>
+              Export CSV
           </button>
-        </div>
-        {Object.keys(this.state.solo).map(function (title) {
-          var value = self.state.solo[title]
+          </div>
+          {Object.keys(this.state.solo).map(function (title) {
+            var value = self.state.solo[title]
 
-          return (
-            <div
-              style={{ clear: 'both' }}
-              className='reactPivot-soloDisplay'
-              key={'solo-' + title} >
-              <span
-                className='reactPivot-clearSolo'
-                onClick={partial(self.clearSolo, title)} >
-                &times;
+            return (
+              <div
+                style={{ clear: 'both' }}
+                className='reactPivot-soloDisplay'
+                key={'solo-' + title} >
+                <span
+                  className='reactPivot-clearSolo'
+                  onClick={partial(self.clearSolo, title)} >
+                  &times;
               </span>
-              {title}: {value}
-            </div>
-          )
-        })}
-        <PivotTable
-          columns={this.getColumns()}
-          rows={this.state.rows}
-          sortBy={this.state.sortBy}
-          sortDir={this.state.sortDir}
-          onSort={this.setSort}
-          onColumnHide={this.hideColumn}
-          nPaginateRows={this.props.nPaginateRows}
-          onSolo={this.setSolo} />
+                {title}: {value}
+              </div>
+            )
+          })}
+          <PivotTable
+            columns={this.getColumns()}
+            rows={this.state.rows}
+            sortBy={this.state.sortBy}
+            sortDir={this.state.sortDir}
+            onSort={this.setSort}
+            onColumnHide={this.hideColumn}
+            nPaginateRows={this.props.nPaginateRows}
+            onSolo={this.setSolo} />
+        </div>
       </div>
     )
   }
